@@ -1,0 +1,1073 @@
+﻿{
+	"Objects": [{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	},
+	{
+		"ObjectData": [{
+			"Values": [{
+				"Value": "M   9"
+			}],
+			"Name": "ObjectName"
+		},
+		{
+			"Values": [{
+				"Value": "GlCl"
+			}],
+			"Name": "ObjectType"
+		},
+		{
+			"Values": [{
+				"Value": "Ophiucus"
+			}],
+			"Name": "Constellation"
+		},
+		{
+			"Values": [{
+				"Value": "-18 30 58.5"
+			}],
+			"Name": "Declination"
+		},
+		{
+			"Values": [{
+				"Value": "17 19 11.78"
+			}],
+			"Name": "RightAscension"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "SpectralType"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "B-VColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "U-BColorIndex"
+		},
+		{
+			"Values": [{
+				"Value": 8.420000076293945
+			}],
+			"Name": "ApparentMagnitude"
+		},
+		{
+			"Values": [{
+				"Value": ""
+			}],
+			"Name": "VariableType"
+		},
+		{
+			"Values": [{
+				"Value": 224.0
+			}],
+			"Name": "RadialVelocity"
+		},
+		{
+			"Values": [{
+				"Value": -0.56999999999999995
+			}],
+			"Name": "ProperMotion_RA"
+		},
+		{
+			"Values": [{
+				"Value": -3.7000000000000002
+			}],
+			"Name": "ProperMotion_DEC"
+		},
+		{
+			"Values": [{
+				"Value": null
+			}],
+			"Name": "Parallax"
+		},
+		{
+			"Values": [{
+				"Value": "BD-18  4488"
+			},
+			{
+				"Value": "C 1716-184"
+			},
+			{
+				"Value": "FAUST 4082"
+			},
+			{
+				"Value": "GCRV  9989"
+			},
+			{
+				"Value": "GCl  60"
+			},
+			{
+				"Value": "HD 156587"
+			},
+			{
+				"Value": "M   9"
+			},
+			{
+				"Value": "NGC  6333"
+			},
+			{
+				"Value": "[FBA2002] 102"
+			},
+			{
+				"Value": "[KPS2012] MWSC 2567"
+			}],
+			"Name": "OtherIdentifiers"
+		}]
+	}]
+}

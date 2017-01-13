@@ -1,0 +1,72 @@
+﻿<dsn>
+  <station name="gdscc" friendlyName="Goldstone" timeUTC="1480274129401" timeZoneOffset="-28800000"/>
+  <dish name="DSS14" azimuthAngle="233.86" elevationAngle="32.40" windSpeed="46.30" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T12:30:23.648Z" updated="2016-11-27T17:06:16.812Z">
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="JNO" spacecraftId="61"/>
+    <downSignal signalType="data" signalTypeDebug="IN LOCK IN LOCK 1 TURBO" dataRate="100006.390625" frequency="8404739021.920951" power="-130.314331" spacecraft="JNO" spacecraftId="61"/>
+    <upSignal signalType="none" signalTypeDebug=" 0 " power="" frequency="" dataRate="" spacecraft="JNO" spacecraftId="61"/>
+    <target name="JNO" id="61" uplegRange="9.06307446743E8" downlegRange="9.06299930901E8" rtlt="6046.653198"/>
+  </dish>
+  <dish name="DSS25" azimuthAngle="180.00" elevationAngle="89.94" windSpeed="59.26" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T19:00:07.832Z" updated="2016-11-27T19:00:46.748Z">
+    <downSignal signalType="none" signalTypeDebug="IDLE OFF 0 MCD2" dataRate="0.000000" frequency="8445769999.999994" power="-477.808197" spacecraft="MVN" spacecraftId="202"/>
+    <upSignal signalType="none" signalTypeDebug="OFF 0 " power="0.000000" frequency="7155" dataRate="" spacecraft="MVN" spacecraftId="202"/>
+    <target name="MVN" id="202" uplegRange="-1.0" downlegRange="-1.0" rtlt="-1.0"/>
+  </dish>
+  <dish name="DSS24" azimuthAngle="177.59" elevationAngle="29.35" windSpeed="61.12" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T17:25:13.265Z" updated="2016-11-27T17:25:48.019Z">
+    <downSignal signalType="data" signalTypeDebug="IN LOCK OFF 1 MCD2" dataRate="54613.335938" frequency="2245000417.779716" power="-126.877037" spacecraft="SOHO" spacecraftId="21"/>
+    <upSignal signalType="data" signalTypeDebug="ON 1 " power="1.748632" frequency="2067" dataRate="" spacecraft="SOHO" spacecraftId="21"/>
+    <target name="SOHO" id="21" uplegRange="1662112.133" downlegRange="1662101.915" rtlt="11.088395"/>
+  </dish>
+  <dish name="DSS15" azimuthAngle="161.32" elevationAngle="30.71" windSpeed="46.33" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T15:15:11.970Z" updated="2016-11-27T15:15:44.541Z">
+    <downSignal signalType="data" signalTypeDebug="IN LOCK OFF 1 MCD3" dataRate="22118.945312" frequency="8429478814.001206" power="-137.823944" spacecraft="CAS" spacecraftId="82"/>
+    <upSignal signalType="data" signalTypeDebug="ON 1 TRK" power="18.005707" frequency="7175" dataRate="" spacecraft="CAS" spacecraftId="82"/>
+    <target name="CAS" id="82" uplegRange="1.647104593443E9" downlegRange="1.646937662591E9" rtlt="10986.974885"/>
+  </dish>
+  <dish name="DSS26" azimuthAngle="" elevationAngle="" windSpeed="" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T10:51:37.298Z" updated="2016-11-27T10:51:37.332Z">
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="ORX" spacecraftId="64"/>
+    <upSignal signalType="none" signalTypeDebug=" " power="" frequency="" dataRate="" spacecraft="ORX" spacecraftId="64"/>
+    <target name="ORX" id="64" uplegRange="5.8277576576E7" downlegRange="5.8263993237E7" rtlt="388.725102"/>
+  </dish>
+  <station name="mdscc" friendlyName="Madrid" timeUTC="1480274129401" timeZoneOffset="3600000"/>
+  <dish name="DSS54" azimuthAngle="" elevationAngle="" windSpeed="" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-23T13:50:24.122Z" updated="2016-11-23T13:50:40.583Z">
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="MMS4" spacecraftId="113"/>
+    <upSignal signalType="none" signalTypeDebug=" " power="" frequency="" dataRate="" spacecraft="MMS4" spacecraftId="113"/>
+    <target name="MMS4" id="113" uplegRange="74073.952" downlegRange="74081.173" rtlt="0.494192"/>
+  </dish>
+  <dish name="DSS65" azimuthAngle="" elevationAngle="" windSpeed="" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-24T12:45:12.692Z" updated="2016-11-24T12:45:45.832Z">
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="MMS2" spacecraftId="109"/>
+    <upSignal signalType="none" signalTypeDebug=" " power="" frequency="" dataRate="" spacecraft="MMS2" spacecraftId="109"/>
+    <target name="MMS2" id="109" uplegRange="74071.049" downlegRange="74078.271" rtlt="0.494173"/>
+  </dish>
+  <dish name="DSS55" azimuthAngle="" elevationAngle="" windSpeed="" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T09:00:09.711Z" updated="2016-11-27T09:00:39.370Z">
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="STA" spacecraftId="234"/>
+    <upSignal signalType="none" signalTypeDebug=" " power="" frequency="" dataRate="" spacecraft="STA" spacecraftId="234"/>
+    <target name="STA" id="234" uplegRange="2.7756529615E8" downlegRange="2.77582543766E8" rtlt="1851.779585"/>
+  </dish>
+  <dish name="DSS63" azimuthAngle="" elevationAngle="" windSpeed="" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T18:55:07.271Z" updated="2016-11-27T18:55:48.586Z">
+    <downSignal signalType="none" signalTypeDebug="IDLE OFF 0 TURBO" dataRate="0.000000" frequency="8435365499.999999" power="-480.155121" spacecraft="DAWN" spacecraftId="203"/>
+    <upSignal signalType="none" signalTypeDebug=" " power="" frequency="" dataRate="" spacecraft="DAWN" spacecraftId="203"/>
+    <target name="DAWN" id="203" uplegRange="3.09631518292E8" downlegRange="3.09642378582E8" rtlt="2065.568995"/>
+  </dish>
+  <station name="cdscc" friendlyName="Canberra" timeUTC="1480274129402" timeZoneOffset="39600000"/>
+  <dish name="DSS36" azimuthAngle="99.21" elevationAngle="18.27" windSpeed="1.23" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T18:15:14.912Z" updated="2016-11-27T18:15:41.505Z">
+    <downSignal signalType="data" signalTypeDebug="IN LOCK OFF 1 MCD2" dataRate="6400.009766" frequency="2275003867.808427" power="-126.975037" spacecraft="WIND" spacecraftId="8"/>
+    <downSignal signalType="carrier" signalTypeDebug="OUT OF LOCK OFF 1 MCD2" dataRate="73513.632812" frequency="2275003907.729034" power="-121.024338" spacecraft="WIND" spacecraftId="8"/>
+    <upSignal signalType="none" signalTypeDebug=" " power="0" frequency="none" dataRate="0" spacecraft="WIND" spacecraftId="8"/>
+    <target name="WIND" id="8" uplegRange="-1.0" downlegRange="-1.0" rtlt="-1.0"/>
+  </dish>
+  <dish name="DSS43" azimuthAngle="69.63" elevationAngle="34.63" windSpeed="1.24" isMSPA="false" isArray="false" isDDOR="false" created="2016-11-27T18:11:00.820Z" updated="2016-11-27T18:11:23.060Z">
+    <downSignal signalType="data" signalTypeDebug="IN LOCK IN LOCK 1 TURBO" dataRate="100006.578125" frequency="8404754491.937345" power="-127.926987" spacecraft="JNO" spacecraftId="61"/>
+    <upSignal signalType="data" signalTypeDebug="ON 1 IDLE" power="18.111933" frequency="7152" dataRate="" spacecraft="JNO" spacecraftId="61"/>
+    <target name="JNO" id="61" uplegRange="9.06313015458E8" downlegRange="9.06305500017E8" rtlt="6046.68228"/>
+  </dish>
+  <dish name="DSS34" azimuthAngle="" elevationAngle="" windSpeed="" isMSPA="true" isArray="false" isDDOR="false" created="2016-11-25T07:30:13.790Z" updated="2016-11-25T10:40:04.609Z">
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="MVN" spacecraftId="202"/>
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="MRO" spacecraftId="74"/>
+    <downSignal signalType="none" signalTypeDebug=" -1 " dataRate="" frequency="" power="" spacecraft="M01O" spacecraftId="53"/>
+    <upSignal signalType="none" signalTypeDebug=" " power="" frequency="" dataRate="" spacecraft="MRO" spacecraftId="74"/>
+    <target name="M01O" id="53" uplegRange="2.11705824257E8" downlegRange="2.11733328876E8" rtlt="1412.399937"/>
+    <target name="MVN" id="202" uplegRange="-1.0" downlegRange="-1.0" rtlt="-1.0"/>
+    <target name="MRO" id="74" uplegRange="2.11708176266E8" downlegRange="2.11732467087E8" rtlt="1412.394187"/>
+  </dish>
+  <timestamp>1480274129401</timestamp>
+</dsn>

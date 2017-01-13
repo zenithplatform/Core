@@ -1,0 +1,118 @@
+﻿{
+	"Items": [
+		{
+			"Name": "ObjectName",
+			"Values": [
+				{
+					"Value": "* alf Ori"
+				}
+			]
+		},
+		{
+			"Name": "Declination",
+			"Values": [
+				{
+					"Value": "+07",
+					"Unit": "degree"
+				},
+				{
+					"Value": "24",
+					"Unit": "minute"
+				},
+				{
+					"Value": "25.430",
+					"Unit":"second"
+				}
+			]
+		},
+		{
+			"Name": "RightAscension",
+			"Values": [
+				{
+					"Value": "05",
+					"Unit": "hour"
+				},
+				{
+					"Value": "55",
+					"Unit": "minute"
+				},
+				{
+					"Value": "10.3053",
+					"Unit": "second"
+				}
+			]
+		},
+		{
+			"Name": "RadialVelocity",
+			"Values": [
+				{
+					"Value": 21.0
+				}
+			]
+		},
+		{
+			"Name": "ProperMotion_DEC",
+			"Values": [
+				{
+					"Value": 11.300000000000001
+				}
+			]
+		},
+		{
+			"Name": "ProperMotion_RA",
+			"Values": [
+				{
+					"Value": 27.539999999999999
+				}
+			]
+		},
+		{
+			"Name": "Spectral type",
+			"Values": [
+				{
+					"Value": "M1-M2Ia-ab"
+				}
+			]
+		},
+		{
+			"Name": "Parallax",
+			"Values": [
+				{
+					"Value": 6.5499999999999998
+				}
+			]
+		},
+		{
+			"Name": "U-B_ColorIndex",
+			"Values": [
+				{
+					"Value": 2.059999942779541
+				}
+			]
+		},
+		{
+			"Name": "B-V_ColorIndex",
+			"Values": [
+				{
+					"Value": 1.850000023841858
+				}
+			]
+		},
+		{
+			"Name": "ApparentMagnitude_V",
+			"Values": [
+				{
+					"Value": 0.5049999952316284
+				}
+			]
+		},
+		{
+			"Name": "ApparentMagnitude_J",
+			"Values": [
+				{
+					"Value": -3.0
+				}
+			]
+		}
+	]
+}

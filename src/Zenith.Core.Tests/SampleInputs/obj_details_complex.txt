@@ -1,0 +1,63 @@
+﻿{
+  "Items": [
+    {
+      "Values": [
+        {
+          "Value": "TestValue2"
+        }, 
+        {
+          "Value": "TestValue2"
+        }
+      ], 
+      "Name": "TestSingle2"
+    }, 
+    {
+      "Values": [
+        {
+          "$type": "ComplexValue", 
+          "Unit": "m", 
+          "Value": "TestValue", 
+          "Error": "+3.6"
+        }, 
+        {
+          "$type": "ComplexValue", 
+          "Unit": "m", 
+          "Value": "TestValue", 
+          "Error": "+3.6"
+        }
+      ], 
+      "Name": "TestSingleValue1"
+    }, 
+    {
+      "Values": [
+        {
+          "$type": "ComplexValue", 
+          "Unit": "m", 
+          "Value": "TestValue", 
+          "Error": "-3.6"
+        }, 
+        {
+          "$type": "ComplexValue", 
+          "Unit": "m", 
+          "Value": "TestValue", 
+          "Error": "+3.6"
+        }
+      ], 
+      "Name": "TestSingleValue2"
+    }, 
+    {
+      "Values": [
+        {
+          "Value": "MultiValue1"
+        }, 
+        {
+          "Value": "MultiValue2"
+        }, 
+        {
+          "Value": "MultiValue3"
+        }
+      ], 
+      "Name": "TestMulti1"
+    }
+  ]
+}

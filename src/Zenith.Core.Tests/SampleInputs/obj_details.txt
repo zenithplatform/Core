@@ -1,0 +1,52 @@
+﻿[
+  {
+    "Name": "TestSingle", 
+    "Value": "TestValue"
+  }, 
+  {
+    "Name": "TestSingle2", 
+    "Value": "TestValue2"
+  }, 
+  {
+    "ComplexValue": {
+      "Unit": "m", 
+      "Value": "TestValue", 
+      "Error": "+3.6"
+    }, 
+    "Name": "TestSingleValue1"
+  }, 
+  {
+    "ComplexValue": {
+      "Unit": "m", 
+      "Value": "TestValue", 
+      "Error": "-3.6"
+    }, 
+    "Name": "TestSingleValue2"
+  }, 
+  {
+    "ComplexValue": {
+      "Unit": "m", 
+      "Value": "TestValue", 
+      "Error": "+3.6"
+    }, 
+    "Name": "TestSingleValue3"
+  }, 
+  [
+    {
+      "Name": "TestComposite1", 
+      "Value": "TestCompVal1"
+    }, 
+    {
+      "Name": "TestComposite1", 
+      "Value": "TestCompVal1"
+    }
+  ], 
+  {
+    "MultiValues": [
+      "MultiValue1", 
+      "MultiValue2", 
+      "MultiValue3"
+    ], 
+    "Name": "TestMulti1"
+  }
+]

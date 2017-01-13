@@ -1,0 +1,33 @@
+﻿{
+	"Catalogs":[
+		{
+			"Name": "J/A+A/553/A91",
+			"Density": "0",
+			"Popularity": "0.477451",
+			"ID": "yCat_35530091",
+			"Status": "",
+			"Wavelengths": ["optical",
+			"Radio"],
+			"Description": "Halpha3 survey of Virgo and Coma galaxies (Fossati+, 2013)",
+			"Links": ["http://vizier.u-strasbg.fr/viz-bin/votable?-meta.what&-source=J/A+A/553/A91"],
+			"Mission": "",
+			"IsObsolete": false,
+			"Astronomy": ["Clusters of galaxies"]
+		},
+		{
+			"Name": "J/AJ/138/338",
+			"Density": "0",
+			"Popularity": "0.435424",
+			"ID": "yCat_51380338",
+			"Status": "",
+			"Wavelengths": ["optical",
+			"Radio"],
+			"Description": "Arecibo Legacy Fast ALFA Survey. IX. (Stierwalt+, 2009)",
+			"Links": ["http://vizier.u-strasbg.fr/viz-bin/votable?-meta.what&-source=J/AJ/138/338"],
+			"Mission": "",
+			"IsObsolete": false,
+			"Astronomy": ["Galaxies",
+			"Redshifts"]
+		}
+	]
+}
