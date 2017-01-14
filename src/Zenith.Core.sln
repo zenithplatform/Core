@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Core.Models", "Zenith.Core.Models\Zenith.Core.Models.csproj", "{2078C725-C3CF-4254-9693-E0CAEC1978D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Core.Engine", "Zenith.Core.Engine\Zenith.Core.Engine.csproj", "{CCEC5315-8377-4B60-B884-F39EBC11F7B2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Core.Interop", "Zenith.Core.Interop\Zenith.Core.Interop.csproj", "{9BE411BB-D724-48B8-990A-8E657266696A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Core.Tests", "Zenith.Core.Tests\Zenith.Core.Tests.csproj", "{A85BF408-28E4-483F-83ED-9BE75776BC47}"
@@ -23,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Core.DataProviders",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Core.Caching", "Zenith.Core.Caching\Zenith.Core.Caching.csproj", "{37645674-996D-4DE8-AB55-547F08219FFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Core.Runtime", "Zenith.Core.Runtime\Zenith.Core.Runtime.csproj", "{4CF9798D-5CF0-4E36-B2F7-B8BBA810B59B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{2078C725-C3CF-4254-9693-E0CAEC1978D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2078C725-C3CF-4254-9693-E0CAEC1978D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2078C725-C3CF-4254-9693-E0CAEC1978D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCEC5315-8377-4B60-B884-F39EBC11F7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCEC5315-8377-4B60-B884-F39EBC11F7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCEC5315-8377-4B60-B884-F39EBC11F7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCEC5315-8377-4B60-B884-F39EBC11F7B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9BE411BB-D724-48B8-990A-8E657266696A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9BE411BB-D724-48B8-990A-8E657266696A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BE411BB-D724-48B8-990A-8E657266696A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{37645674-996D-4DE8-AB55-547F08219FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37645674-996D-4DE8-AB55-547F08219FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37645674-996D-4DE8-AB55-547F08219FFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF9798D-5CF0-4E36-B2F7-B8BBA810B59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF9798D-5CF0-4E36-B2F7-B8BBA810B59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF9798D-5CF0-4E36-B2F7-B8BBA810B59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF9798D-5CF0-4E36-B2F7-B8BBA810B59B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
