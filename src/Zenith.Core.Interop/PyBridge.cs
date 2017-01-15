@@ -35,7 +35,7 @@ namespace Zenith.Core.Interop
                 _socket.Connect(_address);
 
                 if (callback != null)
-                    callback.Wait();
+                    callback.Activate();
 
                 _ready = true;
             }

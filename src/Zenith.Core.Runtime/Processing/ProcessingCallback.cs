@@ -8,12 +8,12 @@ using Zenith.Core.Shared.EventAggregation;
 
 namespace Zenith.Core.Runtime.Processing
 {
-    public class ProcessingCallback : BridgeCallback<ProcessingOutput>
+    public class DefaultProcessingCallback : BridgeCallback
     {
-        public ProcessingCallback()
-            : base("tcp://localhost:18800", new ProcessingCallbackHandler(), EventAggregator.Instance)
+        public DefaultProcessingCallback()
+            : base("tcp://localhost:18800", EventAggregator.Instance)
         {
-            
+            base.AddJsonHandler<ProcessingOutput>(new TracingCallbackHandler());
         }
     }
 }

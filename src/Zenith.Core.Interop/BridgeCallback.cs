@@ -12,7 +12,7 @@ using ZeroMQ;
 
 namespace Zenith.Core.Interop
 {
-    public class BridgeCallback<T> : IBridgeCallback where T : MessageBase
+    public abstract class BridgeCallback : IBridgeCallback
     {
         private string _endpoint = string.Empty;
         private Thread _workerThread;
@@ -21,18 +21,23 @@ namespace Zenith.Core.Interop
         private readonly Queue<string> _queue = new Queue<string>();
         IEventAggregator _aggregator = null;
 
-        public BridgeCallback(string endPoint, IBaseCallbackHandler<T> handler, IEventAggregator aggregator)
+        public BridgeCallback(string endPoint, IEventAggregator aggregator)
         {
             _endpoint = endPoint;
             _aggregator = aggregator;
+        }
 
-            _aggregator.Subsribe<T>(handler.OnReceive);
+        public void AddJsonHandler<T>(IJsonCallbackHandler handler)
+        {
+            Action<string> action = handler.OnReceiveJson;
+            _aggregator.Subsribe(action);
         }
 
         private void Start()
         {
             ZmqContext context = ZmqContext.Create();
-            _workerThread = new Thread(ReceiveData);
+
+            _workerThread = new Thread(Receive);
             _workerThread.Start(context);
         }
 
@@ -42,7 +47,7 @@ namespace Zenith.Core.Interop
             _workerThread.Join();
         }
 
-        private void ReceiveData(object context)
+        private void Receive(object context)
         {
             var buffer = new byte[4096];
             ZmqContext zContext = (ZmqContext)context;
@@ -79,10 +84,7 @@ namespace Zenith.Core.Interop
                         lock (_locker)
                         {
                             _queue.Enqueue(message);
-
-                            JavaScriptSerializer serializer = new JavaScriptSerializer();
-                            T data = serializer.Deserialize<T>(message);
-                            _aggregator.Publish(data);
+                            _aggregator.Publish(message);
                         }
                     }
                 }
@@ -98,9 +100,14 @@ namespace Zenith.Core.Interop
             }
         }
 
-        public void Wait()
+        public void Activate()
         {
             this.Start();
+        }
+
+        public void Deactivate()
+        {
+            this.Stop();
         }
     }
 }

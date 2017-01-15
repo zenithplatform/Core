@@ -20,4 +20,9 @@ namespace Zenith.Core.Interop.Message
             set;
         }
     }
+
+    public class CallbackMessageBase : MessageBase
+    {
+
+    }
 }

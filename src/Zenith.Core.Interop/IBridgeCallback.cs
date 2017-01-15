@@ -8,6 +8,7 @@ namespace Zenith.Core.Interop
 {
     public interface IBridgeCallback
     {
-        void Wait();
+        void Activate();
+        void Deactivate();
     }
 }

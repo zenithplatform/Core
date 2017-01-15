@@ -22,7 +22,8 @@ namespace Zenith.Core.TestConsole
             input.Number = 12;
             //input.Time = DateTime.Now;
 
-            IBridgeCallback callback = new TestProcessingCallback();
+            //IBridgeCallback callback = new TestProcessingCallback();
+            IBridgeCallback callback = new DefaultProcessingCallback();
             LocalRequest request = new LocalRequest(callback);
 
             for (int i = 0; i < 10; i++)
@@ -31,21 +32,29 @@ namespace Zenith.Core.TestConsole
             }
         }
 
-        class TestProcessingCallback : BridgeCallback<TestOutput>
+        class TestProcessingCallback : BridgeCallback
         {
             public TestProcessingCallback()
-                : base("tcp://localhost:18800", new TestCallbackHandler(), EventAggregator.Instance)
+                : base("tcp://localhost:18800", EventAggregator.Instance)
             {
-
+                base.AddJsonHandler<TestOutput>(new TestCallbackHandler());
+                base.AddJsonHandler<TestOutput2>(new TestCallbackHandler2());
             }
         }
 
-        class TestCallbackHandler : IBaseCallbackHandler<TestOutput>
+        class TestCallbackHandler : JsonCallbackHandler<TestOutput>
         {
-            public void OnReceive(TestOutput data)
+            protected override void MessageReceived(TestOutput obj)
             {
-                //Console.WriteLine(string.Format("Received {0}", data.GetType().Name));
-                Console.WriteLine(data);
+                Console.WriteLine(obj);
+            }
+        }
+
+        class TestCallbackHandler2 : JsonCallbackHandler<TestOutput2>
+        {
+            protected override void MessageReceived(TestOutput2 obj)
+            {
+                Console.WriteLine(obj);
             }
         }
 
@@ -56,14 +65,25 @@ namespace Zenith.Core.TestConsole
             public int Number { get; set; }
         }
 
-        class TestOutput : MessageBase
+        class TestOutput : CallbackMessageBase
         {
             public string processor { get; set; }
             public string result { get; set; }
 
             public override string ToString()
             {
-                return string.Format("Processor : {0}, Result : {1}", processor, result);
+                return string.Format("{0} Processor : {1}, Result : {2}", this.GetType().Name, processor, result);
+            }
+        }
+
+        class TestOutput2 : CallbackMessageBase
+        {
+            public string processor { get; set; }
+            public string result { get; set; }
+
+            public override string ToString()
+            {
+                return string.Format("{0} Processor : {1}, Result : {2}", this.GetType().Name, processor, result);
             }
         }
     }

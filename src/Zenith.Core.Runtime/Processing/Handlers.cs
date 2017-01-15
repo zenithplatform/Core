@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,11 @@ using Zenith.Core.Interop.Message;
 
 namespace Zenith.Core.Runtime.Processing
 {
-    public class ProcessingCallbackHandler : IBaseCallbackHandler<ProcessingOutput>
+    public class TracingCallbackHandler : JsonCallbackHandler<ProcessingOutput>
     {
-        public void OnReceive(ProcessingOutput data)
+        protected override void MessageReceived(ProcessingOutput obj)
         {
-            
+            Trace.WriteLine(obj);
         }
     }
 }
