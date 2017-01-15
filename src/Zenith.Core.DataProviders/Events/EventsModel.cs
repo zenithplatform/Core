@@ -7,7 +7,7 @@ using Zenith.Core.Shared.EventAggregation;
 
 namespace Zenith.Core.DataProviders.Events
 {
-    public class DataChangedEvent : IEvent
+    public class DataChangedEvent
     {
         
     }

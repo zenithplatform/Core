@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zenith.Core.Shared.EventAggregation
+namespace Zenith.Core.Interop
 {
-    public delegate void EventHandler<T>(T @event) where T : IEvent;
+    public interface IBridgeCallback
+    {
+        void Wait();
+    }
 }

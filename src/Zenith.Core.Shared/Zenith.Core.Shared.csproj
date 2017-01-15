@@ -82,14 +82,9 @@
     <Compile Include="Configuration\IJsonConfig.cs" />
     <Compile Include="Configuration\JsonConfig.cs" />
     <Compile Include="Configuration\JsonConfigModule.cs" />
+    <Compile Include="EventAggregation\Consumer.cs" />
     <Compile Include="EventAggregation\EventAggregator.cs" />
-    <Compile Include="EventAggregation\EventGroups\EventGroup.cs" />
-    <Compile Include="EventAggregation\EventHandler.cs" />
-    <Compile Include="EventAggregation\IEvent.cs" />
     <Compile Include="EventAggregation\IEventAggregator.cs" />
-    <Compile Include="EventAggregation\IEventTarget.cs" />
-    <Compile Include="EventAggregation\Rx\EventSink.cs" />
-    <Compile Include="EventAggregation\Rx\IEventSink.cs" />
     <Compile Include="Helpers\SizeConverter.cs" />
     <Compile Include="InternetTime.cs" />
     <Compile Include="Logging\DefaultLogger.cs" />

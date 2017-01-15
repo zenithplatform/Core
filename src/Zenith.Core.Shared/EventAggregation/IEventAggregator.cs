@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Zenith.Core.Shared.EventAggregation
 {
-    public interface IEventAggregator
+    public interface IEventAggregator:IDisposable
     {
-		void Register(IEventTarget target);
-        void Register<T>(EventHandler<T> handler) where T : IEvent;
-        void Trigger(IEvent evt);
+		void Publish<T>(T data);
+        void Subsribe<T>(Action<T> action);
+        void Clear();
     }
 }

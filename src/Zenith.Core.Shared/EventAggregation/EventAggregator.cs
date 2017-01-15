@@ -8,41 +8,61 @@ namespace Zenith.Core.Shared.EventAggregation
 {
     public class EventAggregator : IEventAggregator
     {
-        IDictionary<Type, IList<EventHandler<IEvent>>> handlers;
+        private static EventAggregator _instance = new EventAggregator();
+        private static object _syncObject = new object();
+        private static readonly Dictionary<string, Consumer> _all = new Dictionary<string, Consumer>();
 
-        public EventAggregator()
-        {
-            handlers = new Dictionary<Type, IList<EventHandler<IEvent>>>();
-        }
+        private EventAggregator() { }
+        static EventAggregator() { }
 
-        public void Register(IEventTarget target)
+        public void Publish<T>(T data)
         {
-            target.Register(this);
-        }
+            Consumer consumer = null;
 
-        public void Register<T>(EventHandler<T> handler) where T : IEvent
-        {
-            if (!handlers.ContainsKey(typeof(T)))
+            foreach(KeyValuePair<string, Consumer> kvPair in _all)
             {
-                handlers[typeof(T)] = new List<EventHandler<IEvent>>();
+                consumer = kvPair.Value;
+                if (!consumer.ConsumerType.IsAssignableFrom(typeof(T))) { continue; }
+
+                consumer.Fire<T>(data);
             }
-
-            var handlerList = handlers[typeof(T)];
-
-            handlerList.Add(evt => handler((T)evt));
         }
 
-        public void Trigger(IEvent evt)
+        public void Subsribe<T>(Action<T> action)
         {
-            IList<EventHandler<IEvent>> handlerList;
+            Consumer consumer = new Consumer(action, typeof(T));
+            string key = GetIdentifier();
 
-            if (handlers.TryGetValue(evt.GetType(), out handlerList))
+            _all.Add(key, consumer);
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static EventAggregator Instance
+        {
+            get
             {
-                foreach (EventHandler<IEvent> handler in handlerList)
+                lock(_syncObject)
                 {
-                    handler.Invoke(evt);
+                    if (_instance == null)
+                        _instance = new EventAggregator();
                 }
+
+                return _instance;
             }
+        }
+
+        private string GetIdentifier()
+        {
+            return DateTime.Now.Ticks.ToString("x");
         }
     }
 }

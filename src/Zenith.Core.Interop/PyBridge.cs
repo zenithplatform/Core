@@ -16,41 +16,44 @@ namespace Zenith.Core.Interop
 
         public PyBridge(string address)
         {
+            _address = address;
+
             var context = ZmqContext.Create();
             _socket = context.CreateSocket(SocketType.PUSH);
-
-            if (_socket != null)
-                _ready = true;
-
-            _address = address;
         }
 
-        public bool Open()
+        public bool Open(IBridgeCallback callback)
         {
-            if (!string.IsNullOrEmpty(_address))
-                return false;
-
-            bool result = false;
+            if (string.IsNullOrEmpty(_address))
+            {
+                _ready = false;
+                return _ready;
+            }
 
             try
             {
                 _socket.Connect(_address);
-                result = true;
-            }
-            catch(ZmqSocketException zexc)
-            {
-                
-            }
-            catch(ObjectDisposedException odexc)
-            {
 
+                if (callback != null)
+                    callback.Wait();
+
+                _ready = true;
             }
-            finally
+            catch (ZmqSocketException zexc)
             {
-                _ready &= result;
+                _ready = false;
+            }
+            catch (ObjectDisposedException odexc)
+            {
+                _ready = false;
             }
 
-            return result;
+            return _ready;
+        }
+
+        public bool Open()
+        {
+            return Open(null);
         }
 
         public bool Send(MessageBase message)
@@ -65,8 +68,12 @@ namespace Zenith.Core.Interop
             {
                 _ready &= false;
             }
+            finally
+            {
+                _ready &= (status == SendStatus.Sent);
+            }
 
-            return (status == SendStatus.Sent);
+            return _ready;
         }
 
         public bool Ready

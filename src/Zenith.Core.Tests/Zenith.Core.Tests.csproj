@@ -53,10 +53,6 @@
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.Serialization" />
-    <Reference Include="Zenith.Core.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Zenith.Core.Shared.1.0.0\lib\Zenith.Core.Shared.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -108,13 +104,25 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zenith.Core.Interop\Zenith.Core.Interop.csproj">
+      <Project>{9be411bb-d724-48b8-990a-8e657266696a}</Project>
+      <Name>Zenith.Core.Interop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zenith.Core.Models\Zenith.Core.Models.csproj">
       <Project>{2078c725-c3cf-4254-9693-e0caec1978d5}</Project>
       <Name>Zenith.Core.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zenith.Core.Runtime\Zenith.Core.Runtime.csproj">
+      <Project>{4cf9798d-5cf0-4e36-b2f7-b8bba810b59b}</Project>
+      <Name>Zenith.Core.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zenith.Core.Service\Zenith.Core.Service.csproj">
       <Project>{445f8d0e-dc47-4de3-92d3-53c868477f23}</Project>
       <Name>Zenith.Core.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zenith.Core.Shared\Zenith.Core.Shared.csproj">
+      <Project>{dd0afd26-0f92-4d5b-a184-d301b1d11a3f}</Project>
+      <Name>Zenith.Core.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

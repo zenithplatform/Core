@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4CF9798D-5CF0-4E36-B2F7-B8BBA810B59B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{51E50451-BFCD-4E9E-A096-3D2D4BDDEB94}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zenith.Core.Runtime</RootNamespace>
-    <AssemblyName>Zenith.Core.Runtime</AssemblyName>
+    <RootNamespace>Zenith.Core.TestConsole</RootNamespace>
+    <AssemblyName>Zenith.Core.TestConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -30,9 +30,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,17 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Processing\Handlers.cs" />
-    <Compile Include="Processing\LocalRequest.cs" />
-    <Compile Include="Processing\ProcessingCallback.cs" />
-    <Compile Include="Processing\ProcessingInput.cs" />
-    <Compile Include="Processing\ProcessingOutput.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zenith.Core.Interop\Zenith.Core.Interop.csproj">
       <Project>{9be411bb-d724-48b8-990a-8e657266696a}</Project>
       <Name>Zenith.Core.Interop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zenith.Core.Runtime\Zenith.Core.Runtime.csproj">
+      <Project>{4cf9798d-5cf0-4e36-b2f7-b8bba810b59b}</Project>
+      <Name>Zenith.Core.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zenith.Core.Shared\Zenith.Core.Shared.csproj">
       <Project>{dd0afd26-0f92-4d5b-a184-d301b1d11a3f}</Project>

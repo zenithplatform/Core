@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Zenith.Core.DataProviders.Events;
+using Zenith.Core.Shared.EventAggregation;
 
 namespace Zenith.Core.DataProviders.Rethink
 {
@@ -58,7 +59,7 @@ namespace Zenith.Core.DataProviders.Rethink
 
                 foreach(Change<T> change in changes)
                 {
-                    DataEventsGateway.Instance.Trigger(new DataChangedEvent());
+                    EventAggregator.Instance.Publish(new DataChangedEvent());
                 }
             }
             catch (AggregateException exc)

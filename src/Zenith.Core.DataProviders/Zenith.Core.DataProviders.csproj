@@ -93,7 +93,6 @@
     <Compile Include="ConnectionParams.cs" />
     <Compile Include="Base\DataProviderBase.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Events\DataEventsGateway.cs" />
     <Compile Include="Events\EventsModel.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
     <Compile Include="Interfaces\IDataSourceOperations.cs" />

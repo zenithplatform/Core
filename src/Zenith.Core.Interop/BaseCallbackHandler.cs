@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zenith.Core.Shared.EventAggregation
+namespace Zenith.Core.Interop
 {
-    public interface IEvent
+    public interface IBaseCallbackHandler<in T>
     {
+        void OnReceive(T data);
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zenith.Core.Interop.Message
 {
-    public abstract class MessageBase
+    public class MessageBase
     {
         public string JsonData
         {
