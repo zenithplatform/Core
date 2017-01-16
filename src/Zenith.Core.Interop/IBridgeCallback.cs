@@ -10,5 +10,6 @@ namespace Zenith.Core.Interop
     {
         void Activate();
         void Deactivate();
+        bool IsActive { get; }
     }
 }

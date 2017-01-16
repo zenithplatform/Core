@@ -42,10 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Processing\Handlers.cs" />
-    <Compile Include="Processing\LocalRequest.cs" />
+    <Compile Include="Processing\ProcessingRequest.cs" />
     <Compile Include="Processing\ProcessingCallback.cs" />
-    <Compile Include="Processing\ProcessingInput.cs" />
-    <Compile Include="Processing\ProcessingOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,10 +51,17 @@
       <Project>{9be411bb-d724-48b8-990a-8e657266696a}</Project>
       <Name>Zenith.Core.Interop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zenith.Core.Models\Zenith.Core.Models.csproj">
+      <Project>{2078c725-c3cf-4254-9693-e0caec1978d5}</Project>
+      <Name>Zenith.Core.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zenith.Core.Shared\Zenith.Core.Shared.csproj">
       <Project>{dd0afd26-0f92-4d5b-a184-d301b1d11a3f}</Project>
       <Name>Zenith.Core.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

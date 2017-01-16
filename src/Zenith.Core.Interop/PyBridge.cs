@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zenith.Core.Interop.Message;
+using Zenith.Core.Models.Interop;
 using ZeroMQ;
 
 namespace Zenith.Core.Interop
 {
-    public class PyBridge
+    public interface IPyBridge
+    {
+        bool Open();
+        bool Send(MessageBase message);
+        IBridgeCallback CreateCallback<T>() where T : IBridgeCallback;
+        bool Ready { get; }
+    }
+
+    public class PyBridge : IPyBridge
     {
         ZmqSocket _socket = null;
         string _address = string.Empty;
@@ -22,7 +30,7 @@ namespace Zenith.Core.Interop
             _socket = context.CreateSocket(SocketType.PUSH);
         }
 
-        public bool Open(IBridgeCallback callback)
+        public bool Open()
         {
             if (string.IsNullOrEmpty(_address))
             {
@@ -33,10 +41,6 @@ namespace Zenith.Core.Interop
             try
             {
                 _socket.Connect(_address);
-
-                if (callback != null)
-                    callback.Activate();
-
                 _ready = true;
             }
             catch (ZmqSocketException zexc)
@@ -49,11 +53,6 @@ namespace Zenith.Core.Interop
             }
 
             return _ready;
-        }
-
-        public bool Open()
-        {
-            return Open(null);
         }
 
         public bool Send(MessageBase message)
@@ -74,6 +73,15 @@ namespace Zenith.Core.Interop
             }
 
             return _ready;
+        }
+
+        public IBridgeCallback CreateCallback<T>() where T : IBridgeCallback
+        {
+            //object[] args = new object[] { "tcp://localhost:18800" , null};
+
+            //object instance = Activator.CreateInstance(typeof(T), args);
+            //return (IBridgeCallback)instance;
+            return Activator.CreateInstance<T>();
         }
 
         public bool Ready

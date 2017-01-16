@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,37 +9,66 @@ namespace Zenith.Core.Shared.EventAggregation
 {
     public class EventAggregator : IEventAggregator
     {
-        private static EventAggregator _instance = new EventAggregator();
-        private static object _syncObject = new object();
-        private static readonly Dictionary<string, Consumer> _all = new Dictionary<string, Consumer>();
-
-        private EventAggregator() { }
-        static EventAggregator() { }
+        private static readonly object _syncObject = new object();
+        private static readonly object _collSyncObject = new object();
+        private readonly Dictionary<string, Consumer> _all = new Dictionary<string, Consumer>();
 
         public void Publish<T>(T data)
         {
-            Consumer consumer = null;
+            Publish(data, string.Empty);
+        }
 
-            foreach(KeyValuePair<string, Consumer> kvPair in _all)
+        public void Publish<T>(T data, string routingKey)
+        {
+            IEnumerable<Consumer> consumers = null;
+
+            if (!string.IsNullOrEmpty(routingKey))
+                consumers = FindByRoutingKey(routingKey);
+            else
+                consumers = FindByType(typeof(T));
+
+            if (consumers == null || consumers.Count() == 0)
+                return;
+
+            foreach (Consumer consumer in consumers)
             {
-                consumer = kvPair.Value;
-                if (!consumer.ConsumerType.IsAssignableFrom(typeof(T))) { continue; }
-
-                consumer.Fire<T>(data);
+                if (consumer != null)
+                    consumer.Fire<T>(data);
             }
         }
 
-        public void Subsribe<T>(Action<T> action)
+        public string Subsribe<T>(Action<T> action)
         {
-            Consumer consumer = new Consumer(action, typeof(T));
-            string key = GetIdentifier();
+            return Subsribe(action, string.Empty);
+        }
 
-            _all.Add(key, consumer);
+        public string Subsribe<T>(Action<T> action, string routingKey)
+        {
+            Consumer consumer = null;
+            string identifier = string.Empty;
+
+            if (string.IsNullOrEmpty(routingKey))
+                consumer = new Consumer(action, typeof(T));
+            else
+                consumer = new Consumer(action, typeof(T), routingKey);
+
+            lock (_collSyncObject)
+            {
+                identifier = GetIdentifier();
+                _all.Add(identifier, consumer);
+            }
+
+            return identifier;
+        }
+
+        public void Unsubscribe(string token)
+        {
+            RemoveByToken(token);
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            lock (_collSyncObject) { _all.Clear(); }
         }
 
         public void Dispose()
@@ -46,17 +76,47 @@ namespace Zenith.Core.Shared.EventAggregation
             throw new NotImplementedException();
         }
 
-        public static EventAggregator Instance
+        private IEnumerable<Consumer> FindByType(Type type)
         {
-            get
+            try
             {
-                lock(_syncObject)
+                lock (_collSyncObject)
                 {
-                    if (_instance == null)
-                        _instance = new EventAggregator();
+                    return _all.Values.Where(it => it.ConsumerType.IsAssignableFrom(type));
                 }
+            }
+            catch { return null; }
+        }
 
-                return _instance;
+        private IEnumerable<Consumer> FindByRoutingKey(string routingKey)
+        {
+            try
+            {
+                lock (_collSyncObject)
+                {
+                    return _all.Values.Where(it => it.RoutingKey.Equals(routingKey));
+                }
+            }
+            catch { return null; }
+        }
+
+        private Consumer FindByToken(string token)
+        {
+            lock (_collSyncObject)
+            {
+                if (_all.ContainsKey(token))
+                    return _all[token];
+            }
+
+            return null;
+        }
+
+        private void RemoveByToken(string token)
+        {
+            lock (_collSyncObject)
+            {
+                if (_all.ContainsKey(token))
+                    _all.Remove(token);
             }
         }
 

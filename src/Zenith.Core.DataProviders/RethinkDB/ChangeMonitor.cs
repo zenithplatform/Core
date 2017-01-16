@@ -19,13 +19,14 @@ namespace Zenith.Core.DataProviders.Rethink
         public static RethinkDB R = RethinkDB.R;
         Connection _connection = null;
         private static CancellationTokenSource stopMonitor = new CancellationTokenSource();
-
+        IEventAggregator _aggregator = null;
         string _dbName = "", _tableName = "";
 
         public ChangeMonitor(string dbName, string tableName)
         {
             _dbName = dbName;
             _tableName = tableName;
+            _aggregator = new EventAggregator();
         }
 
         private void InitConnection()
@@ -59,7 +60,7 @@ namespace Zenith.Core.DataProviders.Rethink
 
                 foreach(Change<T> change in changes)
                 {
-                    EventAggregator.Instance.Publish(new DataChangedEvent());
+                    _aggregator.Publish(new DataChangedEvent());
                 }
             }
             catch (AggregateException exc)

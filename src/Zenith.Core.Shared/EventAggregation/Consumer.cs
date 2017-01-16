@@ -10,11 +10,20 @@ namespace Zenith.Core.Shared.EventAggregation
     {
         object _handler = null;
         Type _type = null;
+        string _routingKey = string.Empty;
 
         internal Consumer(object handler, Type type)
         {
             _handler = handler;
             _type = type;
+        }
+
+        internal Consumer(object handler, Type type, string routingKey)
+            :this(handler, type)
+        {
+            _handler = handler;
+            _type = type;
+            _routingKey = routingKey;
         }
 
         internal void Fire<T>(T data)
@@ -31,6 +40,11 @@ namespace Zenith.Core.Shared.EventAggregation
         internal Type ConsumerType
         {
             get { return _type; }
+        }
+
+        internal string RoutingKey
+        {
+            get { return _routingKey; }
         }
     }
 }

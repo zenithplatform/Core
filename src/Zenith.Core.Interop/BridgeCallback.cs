@@ -1,36 +1,55 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using Zenith.Core.Interop.Message;
+using Zenith.Core.Models.Interop;
 using Zenith.Core.Shared.EventAggregation;
+using Zenith.Core.Shared.Serialization;
 using ZeroMQ;
 
 namespace Zenith.Core.Interop
 {
     public abstract class BridgeCallback : IBridgeCallback
     {
-        private string _endpoint = string.Empty;
+        private readonly string _endpoint = string.Empty;
         private Thread _workerThread;
         private readonly ManualResetEvent _stopEvent = new ManualResetEvent(false);
         private readonly object _locker = new object();
         private readonly Queue<string> _queue = new Queue<string>();
-        IEventAggregator _aggregator = null;
+        private readonly IEventAggregator _aggregator = null;
+        private readonly List<string> _subscriptions = new List<string>();
+        private readonly List<IJsonMessagePreProcessor> _jsonPreProcessors = new List<IJsonMessagePreProcessor>();
+        private volatile bool _isActive = false;
 
         public BridgeCallback(string endPoint, IEventAggregator aggregator)
         {
             _endpoint = endPoint;
-            _aggregator = aggregator;
+
+            if (aggregator == null)
+                _aggregator = new EventAggregator();
+            else
+                _aggregator = aggregator;
         }
 
         public void AddJsonHandler<T>(IJsonCallbackHandler handler)
         {
             Action<string> action = handler.OnReceiveJson;
-            _aggregator.Subsribe(action);
+            string routingKey = string.Empty;
+
+            string token = _aggregator.Subsribe(action, routingKey);
+
+            _subscriptions.Add(token);
+        }
+
+        public void AddMessagePreProcessor(IJsonMessagePreProcessor preProcessor)
+        {
+            _jsonPreProcessors.Add(preProcessor);
         }
 
         private void Start()
@@ -39,10 +58,12 @@ namespace Zenith.Core.Interop
 
             _workerThread = new Thread(Receive);
             _workerThread.Start(context);
+            _isActive = true;
         }
 
         private void Stop()
         {
+            _isActive = false;
             _stopEvent.Set();
             _workerThread.Join();
         }
@@ -64,14 +85,14 @@ namespace Zenith.Core.Interop
 
                     while (!_stopEvent.WaitOne(0))
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep(10);
 
                         int received = socket.Receive(buffer);
 
                         if (received <= 0)
                             continue;
 
-                        var message = string.Empty;
+                        string message = string.Empty;
 
                         using (var stream = new MemoryStream(buffer, 0, received))
                         {
@@ -84,7 +105,18 @@ namespace Zenith.Core.Interop
                         lock (_locker)
                         {
                             _queue.Enqueue(message);
-                            _aggregator.Publish(message);
+                            string jsonData = string.Empty;
+
+                            if(_jsonPreProcessors.Count == 0)
+                            {
+                                DefaultJsonMessagePreProcessor defaultPreProcessor = new DefaultJsonMessagePreProcessor();
+                                jsonData = defaultPreProcessor.PreProcess(message);
+                            }
+
+                            if (string.IsNullOrEmpty(jsonData))
+                                continue;
+
+                            _aggregator.Publish(jsonData);
                         }
                     }
                 }
@@ -107,7 +139,18 @@ namespace Zenith.Core.Interop
 
         public void Deactivate()
         {
+            foreach (string token in _subscriptions)
+                _aggregator.Unsubscribe(token);
+
             this.Stop();
+        }
+
+        public bool IsActive
+        {
+            get
+            {
+                return _isActive;
+            }
         }
     }
 }

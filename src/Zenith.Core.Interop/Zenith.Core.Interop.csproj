@@ -34,6 +34,10 @@
       <HintPath>..\packages\clrzmq.3.0.0-rc1\lib\net40\clrzmq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Extensions" />
@@ -48,14 +52,19 @@
     <Compile Include="BaseCallbackHandler.cs" />
     <Compile Include="BridgeCallback.cs" />
     <Compile Include="IBridgeCallback.cs" />
-    <Compile Include="Message\MessageBase.cs" />
+    <Compile Include="MessagePreProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PyBridge.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zenith.Core.Models\Zenith.Core.Models.csproj">
+      <Project>{2078c725-c3cf-4254-9693-e0caec1978d5}</Project>
+      <Name>Zenith.Core.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zenith.Core.Shared\Zenith.Core.Shared.csproj">
       <Project>{dd0afd26-0f92-4d5b-a184-d301b1d11a3f}</Project>
       <Name>Zenith.Core.Shared</Name>

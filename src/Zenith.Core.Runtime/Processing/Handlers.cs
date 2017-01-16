@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zenith.Core.Interop;
-using Zenith.Core.Interop.Message;
+using Zenith.Core.Models.Runtime;
 
 namespace Zenith.Core.Runtime.Processing
 {

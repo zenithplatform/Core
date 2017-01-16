@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Zenith.Core.Shared.EventAggregation
 {
-    public interface IEventAggregator:IDisposable
+    public interface IEventAggregator : IDisposable
     {
 		void Publish<T>(T data);
-        void Subsribe<T>(Action<T> action);
+        void Publish<T>(T data, string routingKey);
+        string Subsribe<T>(Action<T> action);
+        string Subsribe<T>(Action<T> action, string routingKey);
+        void Unsubscribe(string token);
         void Clear();
     }
 }

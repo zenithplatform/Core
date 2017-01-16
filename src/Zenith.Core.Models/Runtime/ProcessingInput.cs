@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zenith.Core.Interop.Message;
+using Zenith.Core.Models.Interop;
 
-namespace Zenith.Core.Runtime.Processing
+namespace Zenith.Core.Models.Runtime
 {
     public class ProcessingInput : MessageBase
     {

@@ -56,6 +56,10 @@
       <Project>{9be411bb-d724-48b8-990a-8e657266696a}</Project>
       <Name>Zenith.Core.Interop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zenith.Core.Models\Zenith.Core.Models.csproj">
+      <Project>{2078c725-c3cf-4254-9693-e0caec1978d5}</Project>
+      <Name>Zenith.Core.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zenith.Core.Runtime\Zenith.Core.Runtime.csproj">
       <Project>{4cf9798d-5cf0-4e36-b2f7-b8bba810b59b}</Project>
       <Name>Zenith.Core.Runtime</Name>
