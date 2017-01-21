@@ -16,18 +16,19 @@ namespace Zenith.Core.Interop
         bool Ready { get; }
     }
 
-    public class PyBridge : IPyBridge
+    public class PyBridge : IPyBridge, IDisposable
     {
+        ZmqContext _context = null;
         ZmqSocket _socket = null;
+        
+        private static readonly object _sync = new object();
         string _address = string.Empty;
         volatile bool _ready = false;
+        bool _disposing = false;
 
         public PyBridge(string address)
         {
             _address = address;
-
-            var context = ZmqContext.Create();
-            _socket = context.CreateSocket(SocketType.PUSH);
         }
 
         public bool Open()
@@ -40,8 +41,13 @@ namespace Zenith.Core.Interop
 
             try
             {
-                _socket.Connect(_address);
-                _ready = true;
+                lock (_sync)
+                {
+                    _context = ZmqContext.Create();
+                    _socket = _context.CreateSocket(SocketType.PUSH);
+                    _socket.Connect(_address);
+                    _ready = true;
+                }
             }
             catch (ZmqSocketException zexc)
             {
@@ -57,22 +63,34 @@ namespace Zenith.Core.Interop
 
         public bool Send(MessageBase message)
         {
+            bool sent = false;
             SendStatus status = SendStatus.None;
 
             try
             {
-                status = _socket.Send(message.JsonData, Encoding.UTF8);
+                if (!_ready)
+                {
+                    bool openStatus = this.Open();
+
+                    if (!openStatus)
+                        return false;
+                }
+
+                lock(_sync)
+                {
+                    status = _socket.Send(message.JsonData, Encoding.UTF8);
+                }
             }
             catch (Exception exc)
             {
-                _ready &= false;
+                sent = false;
             }
             finally
             {
-                _ready &= (status == SendStatus.Sent);
+                sent = (status == SendStatus.Sent);
             }
 
-            return _ready;
+            return sent;
         }
 
         public IBridgeCallback CreateCallback<T>() where T : IBridgeCallback
@@ -82,6 +100,22 @@ namespace Zenith.Core.Interop
             //object instance = Activator.CreateInstance(typeof(T), args);
             //return (IBridgeCallback)instance;
             return Activator.CreateInstance<T>();
+        }
+
+        public void Dispose()
+        {
+            try
+            {
+                if (_socket != null)
+                {
+                    _socket.Disconnect(_address);
+                    _socket.Dispose();
+                }
+
+                if (_context != null)
+                    _context.Dispose();
+            }
+            catch { }
         }
 
         public bool Ready

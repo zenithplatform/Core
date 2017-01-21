@@ -19,9 +19,6 @@ namespace Zenith.Core.Runtime.Processing
 
         public void Send(ProcessingInput input)
         {
-            if (!_bridge.Ready)
-                _bridge.Open();
-
             _bridge.Send(input);
         }
     }

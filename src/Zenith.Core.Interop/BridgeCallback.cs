@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,9 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using Zenith.Core.Models.Interop;
 using Zenith.Core.Shared.EventAggregation;
-using Zenith.Core.Shared.Serialization;
 using ZeroMQ;
 
 namespace Zenith.Core.Interop
@@ -85,25 +82,32 @@ namespace Zenith.Core.Interop
 
                     while (!_stopEvent.WaitOne(0))
                     {
+                        //var frames = new List<Frame>();
+                        //do
+                        //{
+                        //    frames.Add(socket.ReceiveFrame());
+                        //}
+                        //while (frames.Last().HasMore);
+
                         Thread.Sleep(10);
-
-                        int received = socket.Receive(buffer);
-
-                        if (received <= 0)
-                            continue;
-
-                        string message = string.Empty;
-
-                        using (var stream = new MemoryStream(buffer, 0, received))
-                        {
-                            message = Encoding.UTF8.GetString(stream.ToArray());
-                        }
-
-                        if (string.IsNullOrEmpty(message))
-                            continue;
 
                         lock (_locker)
                         {
+                            int received = socket.Receive(buffer);
+
+                            if (received <= 0)
+                                continue;
+
+                            string message = string.Empty;
+
+                            using (var stream = new MemoryStream(buffer, 0, received))
+                            {
+                                message = Encoding.UTF8.GetString(stream.ToArray());
+                            }
+
+                            if (string.IsNullOrEmpty(message))
+                                continue;
+
                             _queue.Enqueue(message);
                             string jsonData = string.Empty;
 
@@ -122,7 +126,7 @@ namespace Zenith.Core.Interop
                 }
                 catch (Exception exc)
                 {
-
+                    Console.WriteLine(exc.ToString());
                 }
                 finally
                 {

@@ -22,13 +22,32 @@ namespace Zenith.Core.TestConsole
             IBridgeCallback callback = bridge.CreateCallback<DefaultProcessingCallback>();
             callback.Activate();
 
-            Thread first = new Thread(Run);
-            first.Name = "First thread";
-            Thread second = new Thread(Run);
-            second.Name = "Second thread";
+            while (true)
+            {
+                Console.WriteLine("Ready");
+                Console.ReadLine();
+                Console.WriteLine("Running");
+                try
+                {
+                    //TestInput input = new TestInput();
+                    //input.Name = "Test";
+                    //input.Number = 12;
 
-            first.Start(new ThreadData() { Bridge = bridge});
-            second.Start(new ThreadData() { Bridge = bridge });
+                    //ProcessingRequest request = new ProcessingRequest(bridge);
+                    //request.Send(new ProcessingInput() { JsonData = SerializationHelper.Serialize(input), RequestId = DateTime.Now.Ticks.ToString("x") });
+                    Thread first = new Thread(Run);
+                    first.Name = "First thread";
+                    Thread second = new Thread(Run);
+                    second.Name = "Second thread";
+
+                    first.Start(new ThreadData() { Bridge = bridge });
+                    second.Start(new ThreadData() { Bridge = bridge });
+                }
+                catch (Exception exc)
+                {
+
+                }
+            }
         }
 
         internal class ThreadData
@@ -40,12 +59,16 @@ namespace Zenith.Core.TestConsole
         {
             IPyBridge bridge = ((ThreadData)data).Bridge;
 
-            TestInput input = new TestInput();
-            input.Name = "Test";
-            input.Number = 12;
+            for(int i = 0; i < 10; i++)
+            {
+                TestInput input = new TestInput();
+                input.Name = "Test";
+                input.Number = 12;
 
-            ProcessingRequest request = new ProcessingRequest(bridge);
-            request.Send(new ProcessingInput() { JsonData = SerializationHelper.Serialize(input), RequestId = DateTime.Now.Ticks.ToString("x") });
+                ProcessingRequest request = new ProcessingRequest(bridge);
+                request.Send(new ProcessingInput() { JsonData = SerializationHelper.Serialize(input), RequestId = DateTime.Now.Ticks.ToString("x") });
+                Thread.Sleep(new Random().Next(100, 800));
+            }
         }
 
         class TestProcessingCallback : BridgeCallback
