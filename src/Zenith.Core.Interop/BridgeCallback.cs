@@ -15,7 +15,11 @@ namespace Zenith.Core.Interop
     public abstract class BridgeCallback : IBridgeCallback
     {
         private readonly string _endpoint = string.Empty;
-        private Thread _workerThread;
+        private Task _receiveTask;
+        private ZmqContext _context = null;
+        private ZmqSocket _socket = null;
+        private CancellationTokenSource _source;
+        private CancellationToken _token;
         private readonly ManualResetEvent _stopEvent = new ManualResetEvent(false);
         private readonly object _locker = new object();
         private readonly Queue<string> _queue = new Queue<string>();
@@ -23,8 +27,9 @@ namespace Zenith.Core.Interop
         private readonly List<string> _subscriptions = new List<string>();
         private readonly List<IJsonMessagePreProcessor> _jsonPreProcessors = new List<IJsonMessagePreProcessor>();
         private volatile bool _isActive = false;
+        private bool _disposed = false;
 
-        public BridgeCallback(string endPoint, IEventAggregator aggregator)
+        public BridgeCallback(string endPoint, IEventAggregator aggregator = null)
         {
             _endpoint = endPoint;
 
@@ -51,89 +56,87 @@ namespace Zenith.Core.Interop
 
         private void Start()
         {
-            ZmqContext context = ZmqContext.Create();
-
-            _workerThread = new Thread(Receive);
-            _workerThread.Start(context);
+            this.StartReceiving();
             _isActive = true;
         }
 
         private void Stop()
         {
             _isActive = false;
-            _stopEvent.Set();
-            _workerThread.Join();
+            _source.Cancel();
+            _stopEvent.WaitOne();
+            _stopEvent.Close();
         }
 
-        private void Receive(object context)
+        private void StartReceiving()
         {
             var buffer = new byte[4096];
-            ZmqContext zContext = (ZmqContext)context;
 
-            if (zContext == null)
-                return;
-
-            using (var socket = zContext.CreateSocket(SocketType.SUB))
+            _receiveTask = Task.Run(() =>
             {
                 try
                 {
-                    socket.SubscribeAll();
-                    socket.Connect(_endpoint);
-
-                    while (!_stopEvent.WaitOne(0))
+                    using (ZmqContext context = ZmqContext.Create())
+                    using (ZmqSocket socket = context.CreateSocket(SocketType.SUB))
                     {
-                        //var frames = new List<Frame>();
-                        //do
-                        //{
-                        //    frames.Add(socket.ReceiveFrame());
-                        //}
-                        //while (frames.Last().HasMore);
+                        socket.SubscribeAll();
+                        socket.Connect(_endpoint);
 
-                        Thread.Sleep(10);
-
-                        lock (_locker)
+                        while (!_stopEvent.WaitOne(0))
                         {
-                            int received = socket.Receive(buffer);
+                            //var frames = new List<Frame>();
+                            //do
+                            //{
+                            //    frames.Add(socket.ReceiveFrame());
+                            //}
+                            //while (frames.Last().HasMore);
 
-                            if (received <= 0)
-                                continue;
-
-                            string message = string.Empty;
-
-                            using (var stream = new MemoryStream(buffer, 0, received))
+                            lock (_locker)
                             {
-                                message = Encoding.UTF8.GetString(stream.ToArray());
+                                int received = socket.Receive(buffer);
+
+                                if (received <= 0)
+                                    continue;
+
+                                OnMessageReceived(buffer, received);
+
+                                if (_token.IsCancellationRequested)
+                                    _token.ThrowIfCancellationRequested();
                             }
-
-                            if (string.IsNullOrEmpty(message))
-                                continue;
-
-                            _queue.Enqueue(message);
-                            string jsonData = string.Empty;
-
-                            if(_jsonPreProcessors.Count == 0)
-                            {
-                                DefaultJsonMessagePreProcessor defaultPreProcessor = new DefaultJsonMessagePreProcessor();
-                                jsonData = defaultPreProcessor.PreProcess(message);
-                            }
-
-                            if (string.IsNullOrEmpty(jsonData))
-                                continue;
-
-                            _aggregator.Publish(jsonData);
                         }
                     }
                 }
-                catch (Exception exc)
-                {
-                    Console.WriteLine(exc.ToString());
-                }
-                finally
-                {
-                    socket.Dispose();
-                    zContext.Dispose();
-                }
+                catch (OperationCanceledException cExc) { _stopEvent.Set(); }
+                catch (Exception exc) { }
+
+            }, _token);
+        }
+
+        private void OnMessageReceived(byte[] buffer, int bytesReceived)
+        {
+            string message = string.Empty;
+
+            using (var stream = new MemoryStream(buffer, 0, bytesReceived))
+            {
+                message = Encoding.UTF8.GetString(stream.ToArray());
             }
+
+            if (string.IsNullOrEmpty(message))
+                return;
+
+            _queue.Enqueue(message);
+            string jsonData = string.Empty;
+
+            if (_jsonPreProcessors.Count == 0)
+            {
+                DefaultJsonMessagePreProcessor defaultPreProcessor = new DefaultJsonMessagePreProcessor();
+                jsonData = defaultPreProcessor.PreProcess(message);
+            }
+
+            if (string.IsNullOrEmpty(jsonData))
+                return;
+
+            _aggregator.Publish(jsonData);
         }
 
         public void Activate()
@@ -147,6 +150,59 @@ namespace Zenith.Core.Interop
                 _aggregator.Unsubscribe(token);
 
             this.Stop();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    if (this._receiveTask != null)
+                    {
+                        Stop();
+
+                        if (this._receiveTask.Status == TaskStatus.RanToCompletion ||
+                            this._receiveTask.Status == TaskStatus.Faulted ||
+                            this._receiveTask.Status == TaskStatus.Canceled)
+                        {
+                            this._receiveTask.Dispose();
+                            this._receiveTask = null;
+                        }
+                    }
+
+                    if (this._context != null)
+                    {
+                        this._context.Dispose();
+                        this._context = null;
+                    }
+
+                    if (this._socket != null)
+                    {
+                        this._socket.Dispose();
+                        this._socket = null;
+                    }
+
+                    if (this._source != null)
+                    {
+                        this._source.Dispose();
+                        this._source = null;
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~BridgeCallback()
+        {
+            Dispose(false);
         }
 
         public bool IsActive

@@ -12,7 +12,7 @@ namespace Zenith.Core.Runtime.Processing
     public class DefaultProcessingCallback : BridgeCallback
     {
         public DefaultProcessingCallback()
-            : base("tcp://localhost:18800", null)
+            : base("tcp://localhost:18800")
         {
             base.AddJsonHandler<ProcessingOutput>(new TracingCallbackHandler());
         }

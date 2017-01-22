@@ -74,7 +74,7 @@ namespace Zenith.Core.TestConsole
         class TestProcessingCallback : BridgeCallback
         {
             public TestProcessingCallback()
-                : base("tcp://localhost:18800", null)
+                : base("tcp://localhost:18800")
             {
                 base.AddJsonHandler<TestOutput>(new TestCallbackHandler());
                 base.AddJsonHandler<TestOutput2>(new TestCallbackHandler2());
