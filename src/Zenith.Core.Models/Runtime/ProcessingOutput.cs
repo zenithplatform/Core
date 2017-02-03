@@ -9,14 +9,37 @@ namespace Zenith.Core.Models.Runtime
 {
     public class ProcessingOutput
     {
-        [JsonProperty("processor")]
-        public string Processor { get; set; }
-        [JsonProperty("result")]
-        public string Result { get; set; }
+        [JsonProperty("body")]
+        public OutputBody Body { get; set; }
+
+        [JsonProperty("metadata")]
+        public Metadata Metadata { get; set; }
 
         public override string ToString()
         {
-            return string.Format("{0} Processor : {1}, Result : {2}", this.GetType().Name, Processor, Result);
+            return string.Format("{0} Body : {1}, Metadata : {2}", this.GetType().Name, Body, Metadata);
+            //return string.Format("{0} Processor : {1}, Result : {2}", this.GetType().Name, Processor, Result);
         }
     }
+
+    public class OutputBody
+    {
+        [JsonProperty("processor")]
+        public string Processor { get; set; }
+        [JsonProperty("result")]
+        public string RawResult { get; set; }
+    }
+
+    //public class ProcessingOutput
+    //{
+    //    [JsonProperty("processor")]
+    //    public string Processor { get; set; }
+    //    [JsonProperty("result")]
+    //    public string Result { get; set; }
+
+    //    public override string ToString()
+    //    {
+    //        return string.Format("{0} Processor : {1}, Result : {2}", this.GetType().Name, Processor, Result);
+    //    }
+    //}
 }

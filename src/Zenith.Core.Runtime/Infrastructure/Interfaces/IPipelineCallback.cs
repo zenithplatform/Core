@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zenith.Core.Interop
+namespace Zenith.Core.Runtime.Infrastructure
 {
-    public interface IBridgeCallback
+    public interface IPipelineCallback
     {
         void Activate();
         void Deactivate();

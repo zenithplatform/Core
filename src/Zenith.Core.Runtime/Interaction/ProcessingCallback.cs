@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zenith.Core.Interop;
 using Zenith.Core.Models.Runtime;
-using Zenith.Core.Shared.EventAggregation;
+using Zenith.Core.Runtime.Infrastructure;
 
 namespace Zenith.Core.Runtime.Processing
 {
-    public class DefaultProcessingCallback : BridgeCallback
+    public class DefaultProcessingCallback : PipelineCallback
     {
         public DefaultProcessingCallback()
             : base("tcp://localhost:18800")

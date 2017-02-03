@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 using Zenith.Core.Shared.Serialization;
 
-namespace Zenith.Core.Interop
+namespace Zenith.Core.Runtime.Infrastructure
 {
     public interface IJsonCallbackHandler
     {
@@ -17,6 +15,7 @@ namespace Zenith.Core.Interop
     public abstract class JsonCallbackHandler<T> : IJsonCallbackHandler where T : class
     {
         protected abstract void MessageReceived(T obj);
+        protected abstract void OnError(Exception exc);
 
         protected virtual T Deserialize(string json)
         {
@@ -25,7 +24,17 @@ namespace Zenith.Core.Interop
 
         public void OnReceiveJson(string json)
         {
-            MessageReceived(Deserialize(json));
+            T data = default(T);
+
+            try
+            {
+                data = Deserialize(json);
+                MessageReceived(data);
+            }
+            catch (Exception exc)
+            {
+                OnError(exc);
+            }
         }
     }
 }

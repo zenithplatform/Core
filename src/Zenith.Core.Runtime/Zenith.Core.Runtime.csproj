@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="clrzmq, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ef95cdc29d237b0d, processorArchitecture=MSIL">
+      <HintPath>..\packages\clrzmq.3.0.0-rc1\lib\net40\clrzmq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,9 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Processing\Handlers.cs" />
-    <Compile Include="Processing\ProcessingRequest.cs" />
-    <Compile Include="Processing\ProcessingCallback.cs" />
+    <Compile Include="Infrastructure\CallbackHandler.cs" />
+    <Compile Include="Infrastructure\Interfaces\IPipeline.cs" />
+    <Compile Include="Infrastructure\Interfaces\IPipelineCallback.cs" />
+    <Compile Include="Infrastructure\Pipeline.cs" />
+    <Compile Include="Infrastructure\PipelineCallback.cs" />
+    <Compile Include="Infrastructure\Preprocessing.cs" />
+    <Compile Include="Interaction\CallbackHandlers.cs" />
+    <Compile Include="Interaction\ProcessingRequestHandler.cs" />
+    <Compile Include="Interaction\ProcessingCallback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

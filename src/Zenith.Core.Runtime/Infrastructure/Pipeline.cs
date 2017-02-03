@@ -3,30 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zenith.Core.Models.Interop;
+using Zenith.Core.Models.Runtime;
+using Zenith.Core.Shared.Serialization;
 using ZeroMQ;
 
-namespace Zenith.Core.Interop
+namespace Zenith.Core.Runtime.Infrastructure
 {
-    public interface IPyBridge
-    {
-        bool Open();
-        bool Send(MessageBase message);
-        IBridgeCallback CreateCallback<T>() where T : IBridgeCallback;
-        bool Ready { get; }
-    }
-
-    public class PyBridge : IPyBridge, IDisposable
+    public class Pipeline : IPipeline, IDisposable
     {
         ZmqContext _context = null;
         ZmqSocket _socket = null;
-        
+
         private static readonly object _sync = new object();
         string _address = string.Empty;
         volatile bool _ready = false;
         bool _disposing = false;
 
-        public PyBridge(string address)
+        public Pipeline(string address)
         {
             _address = address;
         }
@@ -61,39 +54,7 @@ namespace Zenith.Core.Interop
             return _ready;
         }
 
-        public bool Send(MessageBase message)
-        {
-            bool sent = false;
-            SendStatus status = SendStatus.None;
-
-            try
-            {
-                if (!_ready)
-                {
-                    bool openStatus = this.Open();
-
-                    if (!openStatus)
-                        return false;
-                }
-
-                lock(_sync)
-                {
-                    status = _socket.Send(message.JsonData, Encoding.UTF8);
-                }
-            }
-            catch (Exception exc)
-            {
-                sent = false;
-            }
-            finally
-            {
-                sent = (status == SendStatus.Sent);
-            }
-
-            return sent;
-        }
-
-        public IBridgeCallback CreateCallback<T>() where T : IBridgeCallback
+        public IPipelineCallback CreateCallback<T>() where T : IPipelineCallback
         {
             //object[] args = new object[] { "tcp://localhost:18800" , null};
 
@@ -116,6 +77,39 @@ namespace Zenith.Core.Interop
                     _context.Dispose();
             }
             catch { }
+        }
+
+        public bool Send<T>(PipelineMessage<T> message)
+        {
+            bool sent = false;
+            SendStatus status = SendStatus.None;
+
+            try
+            {
+                if (!_ready)
+                {
+                    bool openStatus = this.Open();
+
+                    if (!openStatus)
+                        return false;
+                }
+
+                lock (_sync)
+                {
+                    string rawMessage = SerializationHelper.Serialize(message);
+                    status = _socket.Send(rawMessage, Encoding.UTF8);
+                }
+            }
+            catch (Exception exc)
+            {
+                sent = false;
+            }
+            finally
+            {
+                sent = (status == SendStatus.Sent);
+            }
+
+            return sent;
         }
 
         public bool Ready

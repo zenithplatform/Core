@@ -69,8 +69,8 @@
     <Compile Include="DeepSpaceNetwork\Site.cs" />
     <Compile Include="DeepSpaceNetwork\Spacecraft.cs" />
     <Compile Include="DeepSpaceNetwork\XML\XMLModel.cs" />
-    <Compile Include="Interop\MessageBase.cs" />
-    <Compile Include="Runtime\ProcessingInput.cs" />
+    <None Include="Interop\MessageBase.cs" />
+    <Compile Include="Runtime\PipelineMessage.cs" />
     <Compile Include="Runtime\ProcessingOutput.cs" />
     <Compile Include="Search%28Obsolete%29\Observation\Astrometry.cs" />
     <Compile Include="Search%28Obsolete%29\Observation\Characteristics.cs" />

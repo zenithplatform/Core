@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 using Zenith.Core.Shared.EventAggregation;
 using ZeroMQ;
 
-namespace Zenith.Core.Interop
+namespace Zenith.Core.Runtime.Infrastructure
 {
-    public abstract class BridgeCallback : IBridgeCallback
+    public class PipelineCallback : IPipelineCallback
     {
         private readonly string _endpoint = string.Empty;
         private Task _receiveTask;
@@ -29,7 +27,7 @@ namespace Zenith.Core.Interop
         private volatile bool _isActive = false;
         private bool _disposed = false;
 
-        public BridgeCallback(string endPoint, IEventAggregator aggregator = null)
+        public PipelineCallback(string endPoint, IEventAggregator aggregator = null)
         {
             _endpoint = endPoint;
 
@@ -127,6 +125,7 @@ namespace Zenith.Core.Interop
             _queue.Enqueue(message);
             string jsonData = string.Empty;
 
+            //Should be removed
             if (_jsonPreProcessors.Count == 0)
             {
                 DefaultJsonMessagePreProcessor defaultPreProcessor = new DefaultJsonMessagePreProcessor();
@@ -200,7 +199,7 @@ namespace Zenith.Core.Interop
             GC.SuppressFinalize(this);
         }
 
-        ~BridgeCallback()
+        ~PipelineCallback()
         {
             Dispose(false);
         }
