@@ -49,12 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BaseCallbackHandler_OLD.cs" />
-    <None Include="BridgeCallback_OLD.cs" />
-    <None Include="IBridgeCallback_OLD.cs" />
-    <None Include="MessagePreProcessor_OLD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="PyBridge_OLD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

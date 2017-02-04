@@ -24,35 +24,30 @@ namespace Zenith.Core.TestConsole
                 Console.ReadLine();
                 Console.WriteLine("Running");
                 try
-                {
-                    //TestInput input = new TestInput();
-                    //input.Name = "Test";
-                    //input.Number = 12;
+                {                 
+                    TestInput obj = new TestInput();
+                    obj.Name = "Test";
+                    obj.Number = 12;
 
-                    //ProcessingRequest request = new ProcessingRequest(bridge);
-                    //request.Send(new ProcessingInput() { JsonData = SerializationHelper.Serialize(input), RequestId = DateTime.Now.Ticks.ToString("x") });
+                    ProcessingRequestHandler requestHandler = new ProcessingRequestHandler(pipeline);
+                    Dictionary<string, string> execution = new Dictionary<string, string>();
+                    execution.Add("processor", "fits");
+                    Metadata metadata = new Metadata() { RequestId = DateTime.Now.Ticks.ToString("x"), Token = DateTime.Now.Ticks.ToString("x"), ExecutionInfo = execution };
 
-                    //TestInput obj = new TestInput();
-                    //obj.Name = "Test";
-                    //obj.Number = 12;
+                    PipelineMessage<TestInput> payload = new PipelineMessage<TestInput>();
+                    payload.Body = obj;
+                    payload.Metadata = metadata;
 
-                    //ProcessingRequestHandler requestHandler = new ProcessingRequestHandler(pipeline);
-                    //Metadata metadata = new Metadata() { RequestId = DateTime.Now.Ticks.ToString("x"), Token = DateTime.Now.Ticks.ToString("x") };
-
-                    //PipelineMessage<TestInput> payload = new PipelineMessage<TestInput>();
-                    //payload.Body = obj;
-                    //payload.Metadata = metadata;
-
-                    //requestHandler.Send(payload);
+                    requestHandler.Send(payload);
 
 
-                    Thread first = new Thread(Run);
-                    first.Name = "First thread";
-                    Thread second = new Thread(Run);
-                    second.Name = "Second thread";
+                    //Thread first = new Thread(Run);
+                    //first.Name = "First thread";
+                    //Thread second = new Thread(Run);
+                    //second.Name = "Second thread";
 
-                    first.Start(new ThreadData() { Pipeline = pipeline });
-                    second.Start(new ThreadData() { Pipeline = pipeline });
+                    //first.Start(new ThreadData() { Pipeline = pipeline });
+                    //second.Start(new ThreadData() { Pipeline = pipeline });
                 }
                 catch (Exception exc)
                 {

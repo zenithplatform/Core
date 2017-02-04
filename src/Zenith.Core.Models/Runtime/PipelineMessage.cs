@@ -33,15 +33,15 @@ namespace Zenith.Core.Models.Runtime
             set;
         }
 
-        [JsonProperty("req_id")]
+        [JsonProperty("request_id")]
         public string RequestId
         {
             get;
             set;
         }
 
-        [JsonProperty("processor")]
-        public string Processor
+        [JsonProperty("execution_info")]
+        public IDictionary<string, string> ExecutionInfo
         {
             get;
             set;

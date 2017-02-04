@@ -28,6 +28,10 @@ namespace Zenith.Core.Models.Runtime
         public string Processor { get; set; }
         [JsonProperty("result")]
         public string RawResult { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
+        [JsonProperty("status_code")]
+        public int StatusCode { get; set; }
     }
 
     //public class ProcessingOutput
