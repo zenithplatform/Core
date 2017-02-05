@@ -12,8 +12,10 @@ namespace Zenith.Core.TestConsole
 {
     public class Program
     {
+        static object sync = new object();
+
         public static void Main()
-        {
+        {   
             IPipeline pipeline = new Pipeline("tcp://localhost:18801");
             IPipelineCallback callback = pipeline.CreateCallback<DefaultProcessingCallback>();
             callback.Activate();
@@ -24,20 +26,17 @@ namespace Zenith.Core.TestConsole
                 Console.ReadLine();
                 Console.WriteLine("Running");
                 try
-                {                 
-                    TestInput obj = new TestInput();
-                    obj.Name = "Test";
-                    obj.Number = 12;
+                {
+                    FITSExtraction obj = new FITSExtraction();
+                    obj.Method = "image";
+                    obj.Uri = @"D:\Programming\Astronomy\Dev\ZenithPlatformSandbox\source\gll_iem_v02_P6_V11_DIFFUSE.fit";
 
                     ProcessingRequestHandler requestHandler = new ProcessingRequestHandler(pipeline);
                     Dictionary<string, string> execution = new Dictionary<string, string>();
-                    execution.Add("processor", "fits");
+                    execution.Add("processor", "fits.FITSProcessor");
                     Metadata metadata = new Metadata() { RequestId = DateTime.Now.Ticks.ToString("x"), Token = DateTime.Now.Ticks.ToString("x"), ExecutionInfo = execution };
 
-                    PipelineMessage<TestInput> payload = new PipelineMessage<TestInput>();
-                    payload.Body = obj;
-                    payload.Metadata = metadata;
-
+                    PipelineMessage<FITSExtraction> payload = new PipelineMessage<FITSExtraction>() { Body = obj, Metadata = metadata };
                     requestHandler.Send(payload);
 
 
@@ -63,22 +62,29 @@ namespace Zenith.Core.TestConsole
 
         private static void Run(object data)
         {
+            
             IPipeline pipeline = ((ThreadData)data).Pipeline;
 
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 4; i++)
             {
-                TestInput obj = new TestInput();
-                obj.Name = "Test";
-                obj.Number = 12;
+                lock (sync)
+                {
+                    FITSExtraction obj = new FITSExtraction();
+                    obj.Method = "image";
+                    obj.Uri = @"D:\Programming\Astronomy\Dev\ZenithPlatformSandbox\source\gll_iem_v02_P6_V11_DIFFUSE.fit";
 
-                ProcessingRequestHandler requestHandler = new ProcessingRequestHandler(pipeline);
-                Metadata metadata = new Metadata() { RequestId = DateTime.Now.Ticks.ToString("x"), Token = DateTime.Now.Ticks.ToString("x") };
+                    ProcessingRequestHandler requestHandler = new ProcessingRequestHandler(pipeline);
+                    Dictionary<string, string> execution = new Dictionary<string, string>();
+                    execution.Add("processor", "fits.FITSProcessor");
+                    string reqId = DateTime.Now.Ticks.ToString("x");
+                    string token = DateTime.Now.Ticks.ToString("x");
+                    Console.WriteLine(string.Format("Sent : {0}", reqId));
+                    Metadata metadata = new Metadata() { RequestId = reqId, Token = token, ExecutionInfo = execution };
 
-                PipelineMessage<TestInput> payload = new PipelineMessage<TestInput>();
-                payload.Body = obj;
-                payload.Metadata = metadata;
+                    PipelineMessage<FITSExtraction> payload = new PipelineMessage<FITSExtraction>() { Body = obj, Metadata = metadata };
+                    requestHandler.Send(payload);
+                }
 
-                requestHandler.Send(payload);
                 Thread.Sleep(new Random().Next(100, 800));
             }
         }
@@ -116,6 +122,15 @@ namespace Zenith.Core.TestConsole
             //public DateTime Time { get; set; }
             [JsonProperty("number")]
             public int Number { get; set; }
+        }
+
+        [JsonObject("fits_extraction")]
+        public class FITSExtraction
+        {
+            [JsonProperty("method")]
+            public string Method { get; set; }
+            [JsonProperty("uri")]
+            public string Uri { get; set; }
         }
 
         //class TestOutput : CallbackMessageBase

@@ -85,6 +85,7 @@
     <Compile Include="EventAggregation\Consumer.cs" />
     <Compile Include="EventAggregation\EventAggregator.cs" />
     <Compile Include="EventAggregation\IEventAggregator.cs" />
+    <Compile Include="Extensions\Dictionary.cs" />
     <Compile Include="Helpers\SizeConverter.cs" />
     <Compile Include="InternetTime.cs" />
     <Compile Include="Logging\DefaultLogger.cs" />

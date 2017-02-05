@@ -13,7 +13,7 @@ namespace Zenith.Core.Runtime.Processing
     {
         protected override void MessageReceived(ProcessingOutput obj)
         {
-            Trace.WriteLine(string.Format("[TracingCallbackHandler] Message : {0}", obj));
+            Trace.WriteLine(string.Format("[TracingCallbackHandler] Received message : \n{0}", obj));
         }
 
         protected override void OnError(Exception exc)

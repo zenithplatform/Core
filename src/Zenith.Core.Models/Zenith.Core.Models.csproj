@@ -111,6 +111,12 @@
     <Content Include="DeepSpaceNetwork\XML\Samples\config.xml" />
     <Content Include="DeepSpaceNetwork\XML\Samples\status.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zenith.Core.Shared\Zenith.Core.Shared.csproj">
+      <Project>{dd0afd26-0f92-4d5b-a184-d301b1d11a3f}</Project>
+      <Name>Zenith.Core.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

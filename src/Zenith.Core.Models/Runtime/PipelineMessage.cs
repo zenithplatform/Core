@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Zenith.Core.Shared.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,11 @@ namespace Zenith.Core.Models.Runtime
         {
             get;
             set;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} -> (Token : {1}, RequestId : {2}, ExecutionInfo : {3})", this.GetType().Name, Token, RequestId, ExecutionInfo.Dump());
         }
     }
 }
